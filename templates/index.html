@@ -1,0 +1,286 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Health Care Center</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        xintegrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <style>
+        body {
+            background-color: #f8f9fa;
+            /* A light gray background for a cleaner look */
+        }
+
+        .logo {
+            width: 50px;
+            height: 50px;
+            margin-top: 0;
+            margin-left: 2px;
+        }
+
+        .myimg {
+            width: 50px;
+            height: 50px;
+            border: 2px solid #dee2e6;
+            /* Lighter border */
+            border-radius: 25px;
+        }
+
+        /* Styles for the new result cards */
+        .card-header {
+            display: flex;
+            align-items: center;
+            font-weight: bold;
+        }
+
+        .card-header .bi {
+            font-size: 1.5rem;
+            /* Icon size */
+            margin-right: 0.75rem;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm">
+        <div class="container-fluid">
+            <!-- Logo at the top-left corner -->
+            <div class="logo">
+                <!-- Note: 'url_for' is Flask syntax. Using a placeholder for display. -->
+                <img class="myimg" src="https://placehold.co/50x50/343a40/ffffff?text=HC" alt="Logo">
+                <!-- Original code: <img class="myimg" src="{{ url_for('static', filename='img.png') }}" alt=""> -->
+            </div>
+
+            <a class="navbar-brand" href="#">Health Center</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/about">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/contact">Contact</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/developer">Developer</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/blog">Blog</a>
+                    </li>
+                </ul>
+                <form class="d-flex" role="search">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success" type="submit">Search</button>
+                </form>
+            </div>
+        </div>
+    </nav>
+
+
+
+
+    <!-- main form of page -->
+    <h1 class="mt-5 my-4 text-center text-primary fw-bold">Health Care Center</h1>
+
+    <!-- Restyled form container -->
+    <div class="container my-4 bg-light shadow-sm p-4 p-md-5 rounded-3">
+        <form action="/predict" method="post">
+            <div class="form-group">
+                <label for="symptoms" class="form-label fs-5 mb-2">Select Symptoms:</label>
+                <!-- 
+                    I've added the "required" attribute here.
+                    This tells the browser not to submit the form if this field is empty.
+                -->
+                <input type="text" class="form-control form-control-lg" id="symptoms" name="symptoms"
+                    placeholder="Type symptoms such as itching, acidity, skin_rash etc" required>
+            </div>
+            <br>
+            <button type="button" id="startSpeechRecognition" class="btn btn-secondary">
+                <i class="bi bi-mic-fill me-1"></i> Start Speech Recognition
+            </button>
+            <br>
+    
+            <!-- Display the transcribed text here -->
+            <div name="mysysms" id="transcription" class="mt-2 text-muted"></div>
+    
+            {% if message %}
+            <p class="text-danger mt-2">{{ message }}</p>
+            {% endif %}
+            <br>
+    
+            <button type="submit" class="btn btn-primary btn-lg w-100 py-3 mt-3">
+                Predict
+            </button>
+        </form>
+    </div>
+
+
+    <!-- NEW: Results Section - This entire block will only show if 'predicted_disease' exists -->
+    {% if predicted_disease %}
+    <div class="container my-5" id="results">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h2 class="fw-bold mb-0">Our AI System Results</h2>
+            <button class="btn btn-outline-secondary" onclick="window.print()">
+                <i class="bi bi-printer me-1"></i> Print Results
+            </button>
+        </div>
+
+        <!-- Card for Disease and Description -->
+        <div class="card shadow-sm mb-4 border-primary">
+            <div class="card-header bg-primary text-white">
+                <i class="bi bi-heart-pulse-fill"></i>
+                <h5 class="mb-0 ms-2">Predicted Disease</h5>
+            </div>
+            <div class="card-body">
+                <h3 class="card-title text-primary">{{ predicted_disease }}</h3>
+                <hr>
+                <h5 class="card-subtitle mb-2 text-muted">Description</h5>
+                <p class="card-text">{{ dis_des }}</p>
+            </div>
+        </div>
+
+        <!-- Grid for other results -->
+        <div class="row g-4">
+            <!-- Precautions Card -->
+            <div class="col-md-6">
+                <div class="card shadow-sm h-100 border-warning">
+                    <div class="card-header bg-warning text-dark">
+                        <i class="bi bi-shield-check"></i>
+                        <h5 class="mb-0 ms-2">Precautions</h5>
+                    </div>
+                    <div class="card-body">
+                        <ul class="list-group list-group-flush">
+                            {% for i in my_precautions %}
+                            <li class="list-group-item">{{ i }}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Medications Card -->
+            <div class="col-md-6">
+                <div class="card shadow-sm h-100 border-danger">
+                    <div class="card-header bg-danger text-white">
+                        <i class="bi bi-capsule"></i>
+                        <h5 class="mb-0 ms-2">Medications</h5>
+                    </div>
+                    <div class="card-body">
+                        <ul class="list-group list-group-flush">
+                            {% for i in medications %}
+                            <li class="list-group-item">{{ i }}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Workouts Card -->
+            <div class="col-md-6">
+                <div class="card shadow-sm h-100 border-success">
+                    <div class="card-header bg-success text-white">
+                        <i class="bi bi-bicycle"></i>
+                        <h5 class="mb-0 ms-2">Workouts</h5>
+                    </div>
+                    <div class="card-body">
+                        <ul class="list-group list-group-flush">
+                            {% for i in workout %}
+                            <li class="list-group-item">{{ i }}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Diets Card -->
+            <div class="col-md-6">
+                <div class="card shadow-sm h-100 border-info">
+                    <div class="card-header bg-info text-dark">
+                        <i class="bi bi-clipboard2-plus"></i>
+                        <h5 class="mb-0 ms-2">Diets</h5>
+                    </div>
+                    <div class="card-body">
+                        <ul class="list-group list-group-flush">
+                            {% for i in my_diet %}
+                            <li class="list-group-item">{{ i }}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+    <!-- End of New Results Section -->
+
+
+    <!-- Modals have been removed as requested -->
+
+
+    <script>
+        const startSpeechRecognitionButton = document.getElementById('startSpeechRecognition');
+        const transcriptionDiv = document.getElementById('transcription');
+
+        startSpeechRecognitionButton.addEventListener('click', startSpeechRecognition);
+
+        function startSpeechRecognition() {
+            // Use webkitSpeechRecognition for compatibility
+            if (!('webkitSpeechRecognition' in window)) {
+                alert("Your browser doesn't support Speech Recognition. Try Chrome or Edge.");
+                return;
+            }
+
+            const recognition = new webkitSpeechRecognition();
+            recognition.lang = 'en-US'; // Set the language for recognition
+
+            recognition.onstart = function () {
+                transcriptionDiv.textContent = 'Listening...';
+                startSpeechRecognitionButton.disabled = true;
+                startSpeechRecognitionButton.classList.add('btn-danger');
+            };
+
+            recognition.onresult = function (event) {
+                const result = event.results[0][0].transcript;
+                // transcriptionDiv.textContent = result; // This is one option
+
+                // This will append the result to the input field, which is often more useful
+                const symptomsInput = document.getElementById('symptoms');
+                symptomsInput.value = symptomsInput.value ? symptomsInput.value + ' ' + result : result;
+            };
+
+            recognition.onerror = function (event) {
+                transcriptionDiv.textContent = 'Error: ' + event.error;
+                startSpeechRecognitionButton.disabled = false;
+                startSpeechRecognitionButton.classList.remove('btn-danger');
+            };
+
+            recognition.onend = function () {
+                transcriptionDiv.textContent = 'Speech recognition ended.';
+                startSpeechRecognitionButton.disabled = false;
+                startSpeechRecognitionButton.classList.remove('btn-danger');
+            };
+
+            recognition.start();
+        }
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+        xintegrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

@@ -1,0 +1,277 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Blog - Health Care Center</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha3-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+  <style>
+    body {
+      background-color: #f8f9fa;
+    }
+
+    .logo {
+      width: 50px;
+      height: 50px;
+      margin-top: 0;
+      margin-left: 2px;
+    }
+
+    .myimg {
+      width: 50px;
+      height: 50px;
+      border: 2px solid #dee2e6;
+      border-radius: 25px;
+    }
+
+    /* Custom styles for the blog page */
+    .featured-post {
+      background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://placehold.co/1200x500/007bff/ffffff?text=Healthy+Living');
+      background-size: cover;
+      background-position: center;
+      color: white;
+      padding: 4rem 2rem;
+      border-radius: 0.5rem;
+    }
+
+    .featured-post-content {
+      max-width: 600px;
+    }
+
+    .blog-card {
+      transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+      border: 0;
+      border-radius: 0.5rem;
+    }
+
+    .blog-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+    }
+
+    .blog-card-img {
+      border-top-left-radius: 0.5rem;
+      border-top-right-radius: 0.5rem;
+      height: 200px;
+      object-fit: cover;
+    }
+
+    .sidebar-widget {
+      background-color: #ffffff;
+      padding: 1.5rem;
+      border-radius: 0.5rem;
+      box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.05);
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm">
+    <div class="container-fluid">
+      <!-- Logo at the top-left corner -->
+      <div class="logo">
+        <!-- Using a placeholder for display. -->
+        <img class="myimg" src="https://placehold.co/50x50/343a40/ffffff?text=HC" alt="Logo">
+        <!-- Your original code: <img class="myimg" src="{{ url_for('static', filename='img.png') }}" alt=""> -->
+      </div>
+
+      <a class="navbar-brand" href="#">Health Center</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link" href="/">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/about">About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/contact">Contact</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/developer">Developer</a>
+          </li>
+          <li class="nav-item">
+            <!-- Set this link as 'active' -->
+            <a class="nav-link active" aria-current="page" href="/blog">Blog</a>
+          </li>
+        </ul>
+        <form class="d-flex" role="search">
+          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-success" type="submit">Search</button>
+        </form>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Content for Blog Page -->
+  <div class="container my-5">
+
+    <!-- Featured Post Section -->
+    <div class="featured-post shadow-sm mb-5">
+      <div class="featured-post-content">
+        <span class="badge bg-primary mb-2">Featured</span>
+        <h1 class="display-5 fw-bold">The Future of AI in Personal Health</h1>
+        <p class="lead my-3">Discover how artificial intelligence is revolutionizing the way we monitor our health,
+          predict diseases, and personalize treatments.</p>
+        <a href="#" class="btn btn-light btn-lg">Read More &raquo;</a>
+      </div>
+    </div>
+
+    <!-- Blog Grid and Sidebar -->
+    <div class="row g-5">
+
+      <!-- Blog Posts Column -->
+      <div class="col-lg-8">
+        <h2 class="fw-bold mb-4 border-bottom pb-2">Recent Articles</h2>
+
+        <!-- Blog Post 1 -->
+        <div class="card blog-card shadow-sm mb-4">
+          <div class="row g-0">
+            <div class="col-md-4">
+              <img src="https://placehold.co/400x300/28a745/ffffff?text=Nutrition" class="img-fluid blog-card-img"
+                alt="Nutrition">
+            </div>
+            <div class="col-md-8">
+              <div class="card-body">
+                <strong class="d-inline-block mb-2 text-success">Nutrition</strong>
+                <h5 class="card-title fw-bold">10 Superfoods to Boost Your Immune System</h5>
+                <div class="mb-1 text-muted small">Nov 5, 2025</div>
+                <p class="card-text">Learn about the powerful benefits of these nutrient-packed foods and how to easily
+                  incorporate them into your diet.</p>
+                <a href="#" class="icon-link gap-1 icon-link-hover">
+                  Continue reading
+                  <i class="bi bi-arrow-right"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Blog Post 2 -->
+        <div class="card blog-card shadow-sm mb-4">
+          <div class="row g-0">
+            <div class="col-md-4">
+              <img src="https://placehold.co/400x300/ffc107/ffffff?text=Fitness" class="img-fluid blog-card-img"
+                alt="Fitness">
+            </div>
+            <div class="col-md-8">
+              <div class="card-body">
+                <strong class="d-inline-block mb-2 text-warning">Fitness</strong>
+                <h5 class="card-title fw-bold">The 5 Best Workouts You Can Do at Home</h5>
+                <div class="mb-1 text-muted small">Nov 3, 2025</div>
+                <p class="card-text">No gym? No problem. Stay fit and healthy with these effective exercises that
+                  require minimal equipment.</p>
+                <a href="#" class="icon-link gap-1 icon-link-hover">
+                  Continue reading
+                  <i class="bi bi-arrow-right"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Blog Post 3 -->
+        <div class="card blog-card shadow-sm mb-4">
+          <div class="row g-0">
+            <div class="col-md-4">
+              <img src="https://placehold.co/400x300/17a2b8/ffffff?text=Mental+Health" class="img-fluid blog-card-img"
+                alt="Mental Health">
+            </div>
+            <div class="col-md-8">
+              <div class="card-body">
+                <strong class="d-inline-block mb-2 text-info">Mental Health</strong>
+                <h5 class="card-title fw-bold">Mindfulness and Meditation: A Beginner's Guide</h5>
+                <div class="mb-1 text-muted small">Nov 1, 2025</div>
+                <p class="card-text">Explore the benefits of mindfulness and learn simple techniques to reduce stress
+                  and improve focus in your daily life.</p>
+                <a href="#" class="icon-link gap-1 icon-link-hover">
+                  Continue reading
+                  <i class="bi bi-arrow-right"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Pagination -->
+        <nav aria-label="Blog pagination">
+          <ul class="pagination justify-content-center mt-5">
+            <li class="page-item disabled">
+              <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
+            </li>
+            <li class="page-item active" aria-current="page"><a class="page-link" href="#">1</a></li>
+            <li class="page-item"><a class="page-link" href="#">2</a></li>
+            <li class="page-item"><a class="page-link" href="#">3</a></li>
+            <li class="page-item">
+              <a class="page-link" href="#">Next</a>
+            </li>
+          </ul>
+        </nav>
+
+      </div>
+
+      <!-- Sidebar Column -->
+      <div class="col-lg-4">
+        <div class="position-sticky" style="top: 2rem;">
+          <!-- Search Widget -->
+          <div class="sidebar-widget mb-4">
+            <h5 class="fw-bold mb-3">Search</h5>
+            <div class="input-group">
+              <input type="text" class="form-control" placeholder="Search articles..." aria-label="Search articles">
+              <button class="btn btn-primary" type="button" id="button-addon2"><i class="bi bi-search"></i></button>
+            </div>
+          </div>
+
+          <!-- Categories Widget -->
+          <div class="sidebar-widget mb-4">
+            <h5 class="fw-bold mb-3">Categories</h5>
+            <ul class="list-unstyled mb-0">
+              <li><a href="#"
+                  class="d-flex justify-content-between text-decoration-none text-dark p-2 rounded-1_ hover-bg-light">Nutrition
+                  <span class="badge bg-primary-subtle text-primary-emphasis rounded-pill">12</span></a></li>
+              <li><a href="#"
+                  class="d-flex justify-content-between text-decoration-none text-dark p-2 rounded-1_ hover-bg-light">Fitness
+                  <span class="badge bg-primary-subtle text-primary-emphasis rounded-pill">8</span></a></li>
+              <li><a href="#"
+                  class="d-flex justify-content-between text-decoration-none text-dark p-2 rounded-1_ hover-bg-light">Mental
+                  Health <span class="badge bg-primary-subtle text-primary-emphasis rounded-pill">5</span></a></li>
+              <li><a href="#"
+                  class="d-flex justify-content-between text-decoration-none text-dark p-2 rounded-1_ hover-bg-light">AI
+                  in Health <span class="badge bg-primary-subtle text-primary-emphasis rounded-pill">3</span></a></li>
+              <li><a href="#"
+                  class="d-flex justify-content-between text-decoration-none text-dark p-2 rounded-1_ hover-bg-light">General
+                  Tips <span class="badge bg-primary-subtle text-primary-emphasis rounded-pill">7</span></a></li>
+            </ul>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /.container -->
+
+  <!-- Footer -->
+  <footer class="container-fluid bg-dark text-white-50 mt-5 p-4 text-center">
+    <div class="container">
+      <p class="mb-0">&copy; 2024 Health Care Center. All rights reserved.</p>
+      <p>Made with care by the developer team.</p>
+    </div>
+  </footer>
+
+  <!-- Bootstrap JS Bundle -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha3-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous"></script>
+</body>
+
+</html>

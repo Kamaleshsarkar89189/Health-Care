@@ -1,0 +1,260 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Developer - Health Care Center</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+    xintegrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+  <style>
+    body {
+      background-color: #f8f9fa;
+    }
+
+    .logo {
+      width: 50px;
+      height: 50px;
+      margin-top: 0;
+      margin-left: 2px;
+    }
+
+    .myimg {
+      width: 50px;
+      height: 50px;
+      border: 2px solid #dee2e6;
+      border-radius: 25px;
+    }
+
+    /* Custom styles for the developer page */
+    .dev-card {
+      border: 0;
+      border-radius: 0.5rem;
+      transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+      box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.05);
+    }
+
+    .dev-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+    }
+
+    .dev-card-img {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      margin: -60px auto 0 auto;
+      border: 5px solid white;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .dev-social-links a {
+      font-size: 1.5rem;
+      margin: 0 0.5rem;
+      color: #6c757d;
+      transition: color 0.2s;
+    }
+
+    .dev-social-links a:hover {
+      color: var(--bs-primary);
+    }
+
+    .tech-icon {
+      font-size: 3rem;
+      color: #495057;
+    }
+
+    .tech-stack-col {
+      border-right: 1px solid #e0e0e0;
+    }
+
+    .tech-stack-col:last-child {
+      border-right: none;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm">
+    <div class="container-fluid">
+      <!-- Logo at the top-left corner -->
+      <div class="logo">
+        <!-- Using a placeholder for display. -->
+        <img class="myimg" src="https://placehold.co/50x50/343a40/ffffff?text=HC" alt="Logo">
+        <!-- Your original code: <img class="myimg" src="{{ url_for('static', filename='img.png') }}" alt=""> -->
+      </div>
+
+      <a class="navbar-brand" href="#">Health Center</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link" href="/">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/about">About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/contact">Contact</a>
+          </li>
+          <li class="nav-item">
+            <!-- Set this link as 'active' -->
+            <a class="nav-link active" aria-current="page" href="/developer">Developer</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/blog">Blog</a>
+          </li>
+        </ul>
+        <form class="d-flex" role="search">
+          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-success" type="submit">Search</button>
+        </form>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Content for Developer Page -->
+  <div class="container my-5">
+
+    <!-- Header -->
+    <div class="text-center mb-5 pt-4">
+      <h1 class="display-5 fw-bold">Meet the Innovators</h1>
+      <p class="lead text-muted">The passionate team of developers and data scientists behind the Health Care Center AI.
+      </p>
+    </div>
+
+    <!-- Developer Cards -->
+    <div class="row g-4 justify-content-center">
+
+      <!-- Developer 1 -->
+      <div class="col-lg-3 col-md-6">
+        <div class="card dev-card text-center h-100">
+          <img src="https://placehold.co/150x150/007bff/ffffff?text=Dev+1" class="dev-card-img" alt="Developer 1">
+          <div class="card-body pt-4">
+            <h5 class="card-title fw-bold">Kamalesh Sarkar</h5>
+            <p class="card-text text-primary">Lead Developer & AI Specialist</p>
+            <p class="text-muted small">Kamalesh designed the core machine learning model and built the backend
+              infrastructure. </p>
+            <div class="dev-social-links mt-3">
+              <a href="#" target="_blank" title="GitHub"><i class="bi bi-github"></i></a>
+              <a href="#" target="_blank" title="LinkedIn"><i class="bi bi-linkedin"></i></a>
+              <a href="#" target="_blank" title="Twitter"><i class="bi bi-twitter"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Developer 2 -->
+      <div class="col-lg-3 col-md-6">
+        <div class="card dev-card text-center h-100">
+          <img src="https://placehold.co/150x150/28a745/ffffff?text=Dev+2" class="dev-card-img" alt="Developer 2">
+          <div class="card-body pt-4">
+            <h5 class="card-title fw-bold">Milan Das</h5>
+            <p class="card-text text-primary">Frontend Developer & UI/UX</p>
+            <p class="text-muted small">Milan crafted the user-friendly interface, ensuring a seamless and responsive
+              experience on all devices.</p>
+            <div class="dev-social-links mt-3">
+              <a href="#" target="_blank" title="GitHub"><i class="bi bi-github"></i></a>
+              <a href="#" target="_blank" title="LinkedIn"><i class="bi bi-linkedin"></i></a>
+              <a href="#" target="_blank" title="Dribbble"><i class="bi bi-dribbble"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Developer 3 -->
+      <div class="col-lg-3 col-md-6">
+        <div class="card dev-card text-center h-100">
+          <img src="https://placehold.co/150x150/ffc107/ffffff?text=Dev+3" class="dev-card-img" alt="Developer 3">
+          <div class="card-body pt-4">
+            <h5 class="card-title fw-bold">Subrata Dolai</h5>
+            <p class="card-text text-primary">Data Scientist & Researcher</p>
+            <p class="text-muted small">Subrata curated, cleaned, and managed all the medical datasets used to train and
+              validate our predictive model.</p>
+            <div class="dev-social-links mt-3">
+              <a href="#" target="_blank" title="GitHub"><i class="bi bi-github"></i></a>
+              <a href="#" target="_blank" title="LinkedIn"><i class="bi bi-linkedin"></i></a>
+              <a href="#" target="_blank" title="Kaggle"><i class="bi bi-kaggle"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Developer 4 -->
+      <div class="col-lg-3 col-md-6">
+        <div class="card dev-card text-center h-100">
+          <img src="https://placehold.co/150x150/ffc107/ffffff?text=Dev+4" class="dev-card-img" alt="Developer 3">
+          <div class="card-body pt-4">
+            <h5 class="card-title fw-bold">Anish Kumar Das</h5>
+            <p class="card-text text-primary">Data Scientist & Researcher</p>
+            <p class="text-muted small">Anish curated, cleaned, and managed all the medical datasets used to train and
+              validate our predictive model.</p>
+            <div class="dev-social-links mt-3">
+              <a href="#" target="_blank" title="GitHub"><i class="bi bi-github"></i></a>
+              <a href="#" target="_blank" title="LinkedIn"><i class="bi bi-linkedin"></i></a>
+              <a href="#" target="_blank" title="Kaggle"><i class="bi bi-kaggle"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- You can add more developers by copying the col-lg-3 block -->
+
+    </div>
+
+    <!-- Technology Stack Section -->
+    <div class="bg-light p-5 rounded-3 my-5 shadow-sm">
+      <h2 class="text-center fw-bold mb-5">Our Technology Stack</h2>
+      <div class="row text-center g-4">
+        <div class="col-md-6 col-lg tech-stack-col">
+          <i class="bi bi-filetype-py tech-icon"></i>
+          <h5 class="fw-bold mt-2">Python</h5>
+          <p class="text-muted">Core backend logic and model training.</p>
+        </div>
+        <div class="col-md-6 col-lg tech-stack-col">
+          <i class="bi bi-server tech-icon"></i>
+          <h5 class="fw-bold mt-2">Flask</h5>
+          <p class="text-muted">Lightweight web server for our API.</p>
+        </div>
+        <div class="col-md-6 col-lg tech-stack-col">
+          <i class="bi bi-bootstrap-fill tech-icon"></i>
+          <h5 class="fw-bold mt-2">Bootstrap</h5>
+          <p class="text-muted">Responsive and mobile-first frontend.</p>
+        </div>
+        <div class="col-md-6 col-lg tech-stack-col">
+          <i class="bi bi-filetype-js tech-icon"></i>
+          <h5 class="fw-bold mt-2">JavaScript</h5>
+          <p class="text-muted">For interactive features like speech-to-text.</p>
+        </div>
+        <div class="col-md-6 col-lg tech-stack-col">
+          <i class="bi bi-cpu tech-icon"></i>
+          <h5 class="fw-bold mt-2">Scikit-learn</h5>
+          <p class="text-muted">Powering our SVM prediction model.</p>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /.container -->
+
+  <!-- Footer -->
+  <footer class="container-fluid bg-dark text-white-50 mt-5 p-4 text-center">
+    <div class="container">
+      <p class="mb-0">&copy; 2024 Health Care Center. All rights reserved.</p>
+      <p>Made with care by the developer team.</p>
+    </div>
+  </footer>
+
+  <!-- Bootstrap JS Bundle -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+    xintegrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+    crossorigin="anonymous"></script>
+</body>
+
+</html>
