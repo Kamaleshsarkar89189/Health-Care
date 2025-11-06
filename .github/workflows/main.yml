@@ -1,0 +1,59 @@
+name: CI-CD (Tests → Lint → Deploy)
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  test-and-lint:
+    name: Test & Lint
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.11]    # change if you want multiple versions
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Run lint (flake8)
+        run: |
+          # fail the job if flake8 finds problems
+          flake8 || (echo "flake8 lint failed" && exit 1)
+
+      - name: Run tests (pytest)
+        run: |
+          pytest -q
+
+  deploy-to-render:
+    name: Deploy to Render
+    needs: test-and-lint
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main' && needs.test-and-lint.result == 'success'
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Trigger Render deploy via API
+      
+        run: |
+          echo "Triggering Render deploy..."
+          # This posts a deploy request to Render's API v1.
+          # If your service is linked to GitHub, you can provide the branch to deploy or leave it to default.
+          curl -X POST "https://api.render.com/v1/services/${RENDER_SERVICE_ID}/deploys" \
+            -H "Content-Type: application/json" \
+            -H "Accept: application/json" \
+            -H "Authorization: Bearer ${RENDER_API_KEY}" \
+            -d '{"clearCache": true}' \
+            --fail -w "\nRender deploy triggered\n"
