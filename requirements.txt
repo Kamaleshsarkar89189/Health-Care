@@ -1,5 +1,6 @@
 Flask==2.3.3
 black
+black[jupyter]
 gunicorn
 pytest
 flake8
