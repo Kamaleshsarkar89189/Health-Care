@@ -27,6 +27,12 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
+      - name: Check code formatting with Black
+        run: |
+          pip install black
+          black --check .
+
+
       - name: Run lint (flake8)
         run: |
           # fail the job if flake8 finds problems
