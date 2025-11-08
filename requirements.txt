@@ -1,6 +1,5 @@
 Flask==2.3.3
-black
-black[jupyter]
+pandas
+numpy
 gunicorn
-pytest
-flake8
+scikit-learn==1.3.2
