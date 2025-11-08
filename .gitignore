@@ -1,0 +1,38 @@
+# Ignore environment files
+.env
+*.env
+
+# Ignore private key files
+*.pem
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environment folders
+venv/
+env/
+.venv/
+
+# Flask instance folder (uploads, configs, etc.)
+instance/
+*.db
+*.sqlite3
+
+# Logs
+*.log
+
+# IDE / Editor settings
+.vscode/
+.idea/
+
+# Test and coverage
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Build / dist
+build/
+dist/
+*.egg-info/
