@@ -1,6 +1,6 @@
 Flask==2.3.3
 black[jupyter]
-black .
+black
 pandas
 numpy
 gunicorn
