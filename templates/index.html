@@ -5,10 +5,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Health Care Center</title>
-    <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
-        xintegrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
-    <!-- Bootstrap Icons -->
+        integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
     <style>
@@ -48,14 +46,10 @@
 </head>
 
 <body>
-    <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm">
         <div class="container-fluid">
-            <!-- Logo at the top-left corner -->
             <div class="logo">
-                <!-- Note: 'url_for' is Flask syntax. Using a placeholder for display. -->
                 <img class="myimg" src="https://placehold.co/50x50/343a40/ffffff?text=HC" alt="Logo">
-                <!-- Original code: <img class="myimg" src="{{ url_for('static', filename='img.png') }}" alt=""> -->
             </div>
 
             <a class="navbar-brand" href="#">Health Center</a>
@@ -93,35 +87,28 @@
 
 
 
-    <!-- main form of page -->
     <h1 class="mt-5 my-4 text-center text-primary fw-bold">Health Care Center</h1>
 
-    <!-- Restyled form container -->
     <div class="container my-4 bg-light shadow-sm p-4 p-md-5 rounded-3">
         <form action="/predict" method="post">
             <div class="form-group">
                 <label for="symptoms" class="form-label fs-5 mb-2">Select Symptoms:</label>
-                <!-- 
-                    I've added the "required" attribute here.
-                    This tells the browser not to submit the form if this field is empty.
-                -->
                 <input type="text" class="form-control form-control-lg" id="symptoms" name="symptoms"
-                    placeholder="Type symptoms such as itching, acidity, skin_rash etc" required>
+                    placeholder="Type symptoms such as itching, acidity, headache, cough etc" required>
             </div>
             <br>
             <button type="button" id="startSpeechRecognition" class="btn btn-secondary">
                 <i class="bi bi-mic-fill me-1"></i> Start Speech Recognition
             </button>
             <br>
-    
-            <!-- Display the transcribed text here -->
+
             <div name="mysysms" id="transcription" class="mt-2 text-muted"></div>
-    
+
             {% if message %}
             <p class="text-danger mt-2">{{ message }}</p>
             {% endif %}
             <br>
-    
+
             <button type="submit" class="btn btn-primary btn-lg w-100 py-3 mt-3">
                 Predict
             </button>
@@ -129,7 +116,47 @@
     </div>
 
 
-    <!-- NEW: Results Section - This entire block will only show if 'predicted_disease' exists -->
+    {% if not predicted_disease %}
+    <div class="container my-5">
+        <div class="p-5 p-md-5 mb-4 bg-white rounded-3 shadow-sm border">
+            <h2 class="fw-bold text-primary">About Our Health Care Center</h2>
+            <p class="fs-5 mt-3">
+                Welcome to the Health Care Center, where we leverage advanced AI to provide
+                preliminary insights into your health. Our system analyzes your reported symptoms
+                to predict potential conditions and offer guidance on precautions, diet, and exercise.
+            </p>
+            <p class="fs-5">
+                This tool is designed to help you understand your health better and provide
+                information. It is not a substitute for professional medical advice,
+                diagnosis, or treatment.
+            </p>
+            <hr>
+            <h3 class="fw-bold text-success mt-4">Stay Safe and Strong</h3>
+            <p>Here are some general tips for maintaining good health:</p>
+            <ul class="list-unstyled fs-5">
+                <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>Maintain a balanced diet rich
+                    in fruits and vegetables.</li>
+                <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>Engage in regular physical
+                    activity.</li>
+                <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>Ensure you get adequate sleep
+                    each night.</li>
+                <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>Stay hydrated by drinking
+                    plenty of water.</li>
+                <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>Manage stress through
+                    mindfulness or hobbies.</li>
+            </ul>
+
+            <figure class="mt-4 text-center">
+                <blockquote class="blockquote fs-4">
+                    <p>"The greatest wealth is health. Your well-being is our priority."</p>
+                </blockquote>
+                <figcaption class="blockquote-footer fs-5">
+                    The Health Care Center Team
+                </figcaption>
+            </figure>
+        </div>
+    </div>
+    {% endif %}
     {% if predicted_disease %}
     <div class="container my-5" id="results">
         <div class="d-flex justify-content-between align-items-center mb-4">
@@ -139,7 +166,6 @@
             </button>
         </div>
 
-        <!-- Card for Disease and Description -->
         <div class="card shadow-sm mb-4 border-primary">
             <div class="card-header bg-primary text-white">
                 <i class="bi bi-heart-pulse-fill"></i>
@@ -153,9 +179,7 @@
             </div>
         </div>
 
-        <!-- Grid for other results -->
         <div class="row g-4">
-            <!-- Precautions Card -->
             <div class="col-md-6">
                 <div class="card shadow-sm h-100 border-warning">
                     <div class="card-header bg-warning text-dark">
@@ -172,7 +196,6 @@
                 </div>
             </div>
 
-            <!-- Medications Card -->
             <div class="col-md-6">
                 <div class="card shadow-sm h-100 border-danger">
                     <div class="card-header bg-danger text-white">
@@ -189,7 +212,6 @@
                 </div>
             </div>
 
-            <!-- Workouts Card -->
             <div class="col-md-6">
                 <div class="card shadow-sm h-100 border-success">
                     <div class="card-header bg-success text-white">
@@ -206,7 +228,6 @@
                 </div>
             </div>
 
-            <!-- Diets Card -->
             <div class="col-md-6">
                 <div class="card shadow-sm h-100 border-info">
                     <div class="card-header bg-info text-dark">
@@ -225,12 +246,6 @@
         </div>
     </div>
     {% endif %}
-    <!-- End of New Results Section -->
-
-
-    <!-- Modals have been removed as requested -->
-
-
     <script>
         const startSpeechRecognitionButton = document.getElementById('startSpeechRecognition');
         const transcriptionDiv = document.getElementById('transcription');
@@ -259,7 +274,7 @@
 
                 // This will append the result to the input field, which is often more useful
                 const symptomsInput = document.getElementById('symptoms');
-                symptomsInput.value = symptomsInput.value ? symptomsInput.value + ' ' + result : result;
+                symptomsInput.value = symptomsInput.value ? symptomsInput.value + ' ' + result + ', ' : result + ', ';
             };
 
             recognition.onerror = function (event) {
@@ -279,7 +294,7 @@
     </script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
-        xintegrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+        integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
         crossorigin="anonymous"></script>
 </body>
 
